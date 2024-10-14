@@ -11,3 +11,27 @@ default_settings = {
     'location': '',
     'temperature_unit': 'Celsius'  # 默认单位为摄氏度
 }
+# 加载设置
+def load_settings():
+    if os.path.exists(settings_file):
+        with open(settings_file, 'r') as file:
+            return json.load(file)
+    else:
+        return default_settings
+
+# 保存设置
+def save_settings(location, temperature_unit):
+    settings = {
+        'location': location,
+        'temperature_unit': temperature_unit
+    }
+    with open(settings_file, 'w') as file:
+        json.dump(settings, file)
+
+# 提交设置
+def submit():
+    location = location_entry.get()
+    temperature_unit = unit_var.get()
+
+    save_settings(location, temperature_unit)
+    messagebox.showinfo("信息", "设置已保存！")
