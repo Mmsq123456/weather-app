@@ -35,3 +35,28 @@ def submit():
 
     save_settings(location, temperature_unit)
     messagebox.showinfo("信息", "设置已保存！")
+    # 创建 GUI 窗口
+root = tk.Tk()
+root.title("用户偏好设置")
+
+# 加载当前设置
+current_settings = load_settings()
+
+# 输入框：位置
+tk.Label(root, text="默认位置:").pack(pady=5)
+location_entry = tk.Entry(root)
+location_entry.insert(0, current_settings['location'])
+location_entry.pack(pady=5)
+
+# 单选框：温度单位
+unit_var = tk.StringVar(value=current_settings['temperature_unit'])
+tk.Label(root, text="温度单位:").pack(pady=5)
+tk.Radiobutton(root, text="摄氏度 (Celsius)", variable=unit_var, value='Celsius').pack(anchor=tk.W)
+tk.Radiobutton(root, text="华氏度 (Fahrenheit)", variable=unit_var, value='Fahrenheit').pack(anchor=tk.W)
+
+# 提交按钮
+submit_button = tk.Button(root, text="保存设置", command=submit)
+submit_button.pack(pady=20)
+
+# 启动主循环
+root.mainloop()
