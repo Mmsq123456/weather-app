@@ -1,1 +1,13 @@
-2231111
+import tkinter as tk
+from tkinter import messagebox
+import json
+import os
+
+# 文件路径
+settings_file = 'user_settings.json'
+
+# 默认设置
+default_settings = {
+    'location': '',
+    'temperature_unit': 'Celsius'  # 默认单位为摄氏度
+}
